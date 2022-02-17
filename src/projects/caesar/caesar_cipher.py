@@ -33,10 +33,7 @@ def encrypt_file(file_in_name: str, file_out_name: str, shift: int, obfuscate=Fa
 def decrypt(cipher: str, shift: int) -> str:
     """Decrypt a string"""
     # TODO: Implement this function
-# decrypt
-    # cipher = shift_by_n(plaintext, shift, 1).upper()  # 1 for encryption
-    # if obfuscate:
-    # ...
+    ...
 
 
 def decrypt_file(file_in_name: str, file_out_name: str, shift: int):
