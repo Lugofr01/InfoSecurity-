@@ -7,7 +7,11 @@ A5/1 cipher implementation
 """
 
 from hashlib import sha256
+from operator import xor
 from pathlib import Path
+import re
+
+from numpy import source
 
 
 def populate_registers(init_keyword: str) -> tuple[str, str, str]:
@@ -22,7 +26,25 @@ def populate_registers(init_keyword: str) -> tuple[str, str, str]:
     # TODO: Implement this function
     
     ...
-   
+    
+    XYZ = ""
+    
+    for character in init_keyword:
+        XYZ = XYZ + bin(ord(character))[2:].zfill(8)
+        # bin is to Return the binary representation of an integer.
+        # ord is to Return the Unicode code point for a one-character string
+        #.zfill is to pad zeros on the left on the given width which at this case is 8 characters or 64 bits
+        
+# Important: if the keyword is shorted than 8 characters (64 bits),pad the resulting short bit string with zeros (0) up to the required 64 bits
+
+    if len(XYZ) < 64:
+        XYZ = XYZ.ljust(64,"0")
+        
+    X = XYZ[0:19]
+    Y = XYZ[19:41]
+    Z =XYZ[41:64]
+    
+    return (X,Y,Z)
 
 
 def majority(x8_bit: str, y10_bit: str, z10_bit: str) -> str:
@@ -35,7 +57,38 @@ def majority(x8_bit: str, y10_bit: str, z10_bit: str) -> str:
     """
     # TODO: Implement this function
     ...
-
+    
+    if x8_bit =="0":
+        if y10_bit =="0":
+            return "0"
+        else:
+            if z10_bit =="0":
+                return "0"
+            else:
+                return "1"
+    else:
+        if y10_bit =="0":
+            if z10_bit =="1":
+                return "1"
+            
+            else:
+                return "0"
+            
+        else:
+            return "1"
+            
+        
+        
+# The approach here involves finding the majority in x,y,z. The if statements check whether the majority is between values 1 and 0
+# The majority will always be what is present in two or more registers. ie if x,y,z =(0,0,1) the majority is 0 and vice versa
+        
+# def XOR(a,b):
+#     if a!=b:
+#         return 1 
+#     else:
+#         return 0    
+# # source:https://www.educative.io/edpresso/how-to-implement-xor-gate-in-python
+    
 
 def step_x(register: str) -> str:
     """Stepping register X
@@ -45,6 +98,19 @@ def step_x(register: str) -> str:
     """
     # TODO: Implement this function
     ...
+    #from page 53, "information security and principles mark stamp" t = x13 xor x16 xor x17 xor x18
+    
+    x13 = register[13]
+    x16 = register[16]
+    x17 = register[17]
+    x18 = register[18]
+    
+    t = int(x13)^int(x16)^int(x17)^int(x18)
+    
+    register = str(t) + register[:-1]
+    
+    return register
+    
 
 
 def step_y(register: str) -> str:
@@ -54,8 +120,18 @@ def step_y(register: str) -> str:
     :return: new value of the Y register
     """
     # TODO: Implement this function
+    
     ...
-
+    #from page 53, "information security and principles mark stamp" t = y20 xor y21
+    
+    y20 = register[20]
+    y21 = register[21]
+    
+    t = int(y20)^int(y21)
+    register = str(t) + register[:-1]
+    
+    return register
+    
 
 def step_z(register: str) -> str:
     """Stepping register Z
@@ -65,9 +141,20 @@ def step_z(register: str) -> str:
     """
     # TODO: Implement this function
     ...
+    #from page 53, "information security and principles mark stamp" t = z7 xor z20 xorz21 xor z22
+    
+    z7 = register[7]
+    z20 = register[20]
+    z21 = register[21]
+    z22 = register[22]
+    
+    t = int(z7)^int(z20)^int(z21)^int(z22)
+    register = str(t) + register[:-1]
+    return register
 
 
 def generate_bit(x: str, y: str, z: str) -> int:
+    
     """Generate a keystream bit
 
     :param x: X register
@@ -77,6 +164,14 @@ def generate_bit(x: str, y: str, z: str) -> int:
     """
     # TODO: Implement this function
     ...
+      
+    #from page 54, we see that a single key stream is generated as x18 xor y21 xor z22
+    x=x[18]
+    y=y[21]
+    z=z[22]
+    singlekeystreambit= int(x)^int(y)^int(z)
+    return singlekeystreambit
+    
 
 
 def generate_keystream(plaintext: str, x: str, y: str, z: str) -> str:
@@ -90,6 +185,7 @@ def generate_keystream(plaintext: str, x: str, y: str, z: str) -> str:
     """
     # TODO: Implement this function
     ...
+    
 
 
 def encrypt(plaintext: str, keystream: str) -> str:
