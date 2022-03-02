@@ -43,7 +43,7 @@ def encrypt(plaintext: str, row_key: tuple[int], col_key: tuple[int]) -> str:
     for x in row_key:
         res.append(create_matrix[x])
     
-    # Shuffle the column
+    # Shuffle the colum
     
     changed_col = []
     for y in range(len(res)):
