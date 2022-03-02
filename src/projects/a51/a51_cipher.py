@@ -10,6 +10,7 @@ from hashlib import sha256
 from operator import xor
 from pathlib import Path
 import re
+from unittest import result
 
 from numpy import source
 
@@ -82,12 +83,12 @@ def majority(x8_bit: str, y10_bit: str, z10_bit: str) -> str:
 # The approach here involves finding the majority in x,y,z. The if statements check whether the majority is between values 1 and 0
 # The majority will always be what is present in two or more registers. ie if x,y,z =(0,0,1) the majority is 0 and vice versa
         
-# def XOR(a,b):
-#     if a!=b:
-#         return 1 
-#     else:
-#         return 0    
-# # source:https://www.educative.io/edpresso/how-to-implement-xor-gate-in-python
+def XOR(a,b):
+    if a!=b:
+        return 1 
+    else:
+        return 0    
+# source:https://www.educative.io/edpresso/how-to-implement-xor-gate-in-python
     
 
 def step_x(register: str) -> str:
@@ -169,9 +170,8 @@ def generate_bit(x: str, y: str, z: str) -> int:
     x=x[18]
     y=y[21]
     z=z[22]
-    singlekeystreambit= int(x)^int(y)^int(z)
-    return singlekeystreambit
-    
+    single_key_stream_bit= int(x)^int(y)^int(z)
+    return single_key_stream_bit
 
 
 def generate_keystream(plaintext: str, x: str, y: str, z: str) -> str:
@@ -185,8 +185,27 @@ def generate_keystream(plaintext: str, x: str, y: str, z: str) -> str:
     """
     # TODO: Implement this function
     ...
+    answer =""
+    binarytext = ""
     
-
+    for character in plaintext:
+        binarytext = binarytext + bin(ord(character))[2:].zfill(8)
+        
+    for i in range(0,len(binarytext)):
+        mj = majority(x[8], y[10], z[10])
+        if x[8]== mj:
+            x = step_x(x)
+            
+        if y[10]==mj:
+            y = step_y(y)
+        
+        if z[10] == mj:
+            z = step_z(z)
+            
+        keystream = generate_bit(x,y,z)
+        answer = answer + str(keystream)
+    
+    return answer
 
 def encrypt(plaintext: str, keystream: str) -> str:
     """Encrypt plaintext using A5/1
@@ -197,8 +216,20 @@ def encrypt(plaintext: str, keystream: str) -> str:
     """
     # TODO: Implement this function
     ...
+    
+    ciphertext = ""
+    
+    binarytext = ""
+    for character in plaintext:
+        binarytext = binarytext + bin(ord(character))[2:].zfill(8)
 
+    for i in range(0,len(binarytext)):
+        
+        ciphertext = ciphertext + str(int(binarytext[i])^int(keystream[i]))
+        
+    return ciphertext
 
+    
 def decrypt(ciphertext: str, keystream: str) -> str:
     """Decrypt ciphertext using A5/1
 
@@ -208,6 +239,49 @@ def decrypt(ciphertext: str, keystream: str) -> str:
     """
     # TODO: Implement this function
     ...
+    
+    plaintext = ""
+    
+    binarytext = ""
+    for character in plaintext:
+        binarytext = binarytext + bin(ord(character))[2:].zfill(8)
+
+    for i in range(0,len(binarytext)):
+        
+        ciphertext = ciphertext + str(int(binarytext[i])^int(keystream[i]))
+        
+    return ciphertext
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    # plaintext = ""
+    # binarytext = []
+    
+    # i = 0
+    # while(i<len(ciphertext)):
+    #     binarytext.insert(i,int(ciphertext[i]))
+        
+    #     plaintext = plaintext + str(binarytext[i]^keystream[i])
+        
+    #     i+=1
+    # return (str(plaintext))
+    
+    # for character in ciphertext:
+    #     binarytext = binarytext + bin(ord(character))[2:].zfill(8)
+
+    # for i in range(0,len(binarytext)):
+        
+    #     plaintext = plaintext + str(int(binarytext[i])^int(keystream[i]))
+        
+    # return ciphertext
 
 
 def encrypt_file(filename: str, secret: str) -> None:
