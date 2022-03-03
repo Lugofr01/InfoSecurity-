@@ -83,14 +83,7 @@ def majority(x8_bit: str, y10_bit: str, z10_bit: str) -> str:
         
 # The approach here involves finding the majority in x,y,z. The if statements check whether the majority is between values 1 and 0
 # The majority will always be what is present in two or more registers. ie if x,y,z =(0,0,1) the majority is 0 and vice versa
-        
-def XOR(a,b):
-    if a!=b:
-        return 1 
-    else:
-        return 0    
-# source:https://www.educative.io/edpresso/how-to-implement-xor-gate-in-python
-    
+
 
 def step_x(register: str) -> str:
     """Stepping register X
