@@ -9,10 +9,11 @@ A5/1 cipher implementation
 from hashlib import sha256
 from operator import xor
 from pathlib import Path
+from pydoc import plain
 import re
 from unittest import result
 
-from numpy import source
+from numpy import character, source
 
 
 def populate_registers(init_keyword: str) -> tuple[str, str, str]:
@@ -218,7 +219,6 @@ def encrypt(plaintext: str, keystream: str) -> str:
     ...
     
     ciphertext = ""
-    
     binarytext = ""
     for character in plaintext:
         binarytext = binarytext + bin(ord(character))[2:].zfill(8)
@@ -239,29 +239,27 @@ def decrypt(ciphertext: str, keystream: str) -> str:
     """
     # TODO: Implement this function
     ...
-    
     plaintext = ""
-    
     binarytext = ""
-    for character in plaintext:
-        binarytext = binarytext + bin(ord(character))[2:].zfill(8)
+    for character in ciphertext:
+        binarytext = binarytext + chr(ord(character))
 
     for i in range(0,len(binarytext)):
         
-        ciphertext = ciphertext + str(int(binarytext[i])^int(keystream[i]))
+        plaintext = plaintext + str(int(binarytext[i])^int(keystream[i]))
         
-    return ciphertext
+        
+        
+    return plaintext
     
+    # plaintext = ""
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    # for i in range(len(ciphertext)):
+    #     character = ciphertext[i]
+        
+    #     plaintext = plaintext + (chr(ord(character)^ord(keystream[i])))
+        
+    # return plaintext
     # plaintext = ""
     # binarytext = []
     
@@ -296,12 +294,26 @@ def encrypt_file(filename: str, secret: str) -> None:
     """
     # TODO: Implement this function
     ...
+    r = open(filename, "r")
+    w = open("data/projects/a51/preamble.secret", "w")
+    w = open("data/projects/a51/simple.secret", "w")
+    
+    for line in r:
+        x, y, z = populate_registers(secret)
+        keystream = generate_keystream(line, x, y, z)
+        
+        w.write(hex(int(encrypt(line, keystream), 2)) + '\n')
 
 
 def main():
     """Main function"""
     # NOTE: Use this space as you see fit
     ...
+    encrypt_file("data/projects/a51/preamble","constitution")
+    encrypt_file("data/projects/a51/simple","")
+    
+    r = sha256(open("data/projects/a51/roster.secret", "rb").read()).hexdigest()== "c6cffc32f7c20ecbbfd633796696359e05abcf09f1c8e96508162dd6f738752d"
+    print(r)
 
 
 if __name__ == "__main__":
