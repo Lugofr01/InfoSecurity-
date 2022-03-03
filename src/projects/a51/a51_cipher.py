@@ -305,8 +305,8 @@ def main():
     encrypt_file("data/projects/a51/preamble","constitution")
     encrypt_file("data/projects/a51/simple","")
     
-    r = sha256(open("data/projects/a51/roster.secret", "rb").read()).hexdigest()== "c6cffc32f7c20ecbbfd633796696359e05abcf09f1c8e96508162dd6f738752d"
-    print(r)
+    r = sha256(open("data/projects/a51/roster.secret", "rb").read()).hexdigest()
+    
 
 
 if __name__ == "__main__":
