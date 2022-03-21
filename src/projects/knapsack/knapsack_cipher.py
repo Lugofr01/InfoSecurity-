@@ -45,8 +45,8 @@ def calculate_n(sik: tuple) -> int:
     # TODO: Implement this function
     ...
 
-    
-    return (sum(sik)+1)
+    n = (sum(sik)+1)
+    return n
 
 def calculate_m(n: int) -> int:
     """
@@ -57,6 +57,10 @@ def calculate_m(n: int) -> int:
     """
     # TODO: Implement this function
     ...
+    # for i in range(n, 0, -1):
+    #     if math.gcd(i, n) == 1:
+    #         return i
+    
     m = n-1
     
     return m
@@ -75,19 +79,16 @@ def calculate_inverse(sik: tuple[int, ...], n: int = None, m: int = None) -> int
     if n == None:
         return sum(sik)
     modular = n 
-    y1 = 0
-    x1 = 1 
-    if (n == 1) : 
-        return 0 
+    y1, x1 = 0,1
     while m >1: 
         quotient = m // n 
-        t = n
-        n = m % n 
-        m = t 
-        t = y1 
-        
+        m , n = n, m %n
+        a = y1   
         y1 = x1 - (quotient * y1)
-        x1 = t 
+        x1 = a 
+        
+    if y1<0:
+        y1 = y1 + modular
   
     if (x1 < 0) : 
         x1 = x1 + modular
