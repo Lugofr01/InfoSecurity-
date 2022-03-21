@@ -94,6 +94,8 @@ def calculate_inverse(sik: tuple[int, ...], n: int = None, m: int = None) -> int
         x1 = x1 + modular
   
     return x1 
+
+# source for this a;gorithm
 # https://www.techiedelight.com/extended-euclidean-algorithm-implementation/
 # thought process was through euclidean algorithm for gcd
 # https://stackoverflow.com/questions/18940194/using-extended-euclidean-algorithm-to-create-rsa-private-key'
