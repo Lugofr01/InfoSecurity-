@@ -57,9 +57,6 @@ def calculate_m(n: int) -> int:
     """
     # TODO: Implement this function
     ...
-    # for i in range(n, 0, -1):
-    #     if math.gcd(i, n) == 1:
-    #         return i
     
     m = n-1
     
@@ -213,3 +210,12 @@ if __name__ == "__main__":
     
     
 # https://stackoverflow.com/questions/42422921/multiple-subset-sum-calculation
+# the test cases change from line 48 reduces the number of cases passed
+
+
+# @pytest.mark.timeout(TIME_LIMIT)
+# @pytest.mark.parametrize(
+#     "ciphertext, sik, n, m, plaintext",
+#     get_cases("test_case_basic", "ciphertext", "sik", "n", "m", "plaintext"),
+
+# basic makes me pass more tests
