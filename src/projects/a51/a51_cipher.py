@@ -233,13 +233,13 @@ def decrypt(ciphertext: str, keystream: str) -> str:
     # TODO: Implement this function
     ...
     plaintext = ""
-    binarytext = ""
+    text = ""
     for character in ciphertext:
-        binarytext = binarytext + chr(ord(character))
+        text = text + chr(ord(character))
 
-    for i in range(0,len(binarytext)):
+    for i in range(0,len(text)):
         
-        plaintext = plaintext + str(int(binarytext[i])^int(keystream[i]))
+        plaintext = plaintext + chr(ord(text[i])^ord(keystream[i]))
         
         
         
