@@ -57,6 +57,7 @@ def calculate_m(n: int) -> int:
     """
     # TODO: Implement this function
     ...
+
     
     m = n-1
     
@@ -140,9 +141,12 @@ def encrypt(
        plaintext_binary = plaintext_binary + bin(ord(plaintext[i]))[2:].zfill(8)
        
     cipher = 0
-    length_gk = len(gk) - 1
+    length_gk = len(gk)-1
     length_plaintext= len(plaintext_binary) - 1
-    while length_gk >= 0 <= length_plaintext:
+
+        
+        
+    while block_size >= 0 <= length_plaintext:
         
         if plaintext_binary[length_plaintext] == "1": 
             cipher = cipher + gk[length_gk]
