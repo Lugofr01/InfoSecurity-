@@ -1,5 +1,5 @@
 1. What is the hidden artifact?
-The hidden artifact is the Vegreville egg, which is a large sculpture of a pysanka(Ukrainian Easter Egg) I was able to obtain this infromation through deduction of the longitude and latitude positons found in the file infomation of the secret.png file.
+The hidden artifact is the Vegreville egg, which is a large sculpture of a pysanka(Ukrainian Easter Egg) I was able to obtain this information through deduction of the longitude and latitude positons found in the file infomation of the secret.png file.
 2. Where is it located?
 The hidden artifact is located at Latitude:53° 29' 30.66" N, Longitude: 112° 2' 9.53" W. From Google Maps the location is Vegreville Pysanka in Vegreville,Alberta,Canada.
 3. When was it put there? 
