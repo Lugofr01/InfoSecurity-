@@ -108,7 +108,6 @@ def generate_gk(sik: tuple[int, ...], n: int = None, m: int = None) -> tuple[int
     :param m: M value
     :return: the general knapsack
     """
-    # TODO: Implement this function
     ...
     if n == None:
         n = calculate_n(sik)
@@ -142,14 +141,16 @@ def encrypt(
        
     cipher = 0
     length_gk = len(gk)-1
-    length_plaintext= len(plaintext_binary) - 1
+    length_plaintext= len(plaintext_binary) - 2
 
-        
+    
         
     while block_size >= 0 <= length_plaintext:
         
-        if plaintext_binary[length_plaintext] == "1": 
+        if plaintext_binary[length_plaintext] == "1":
+         
             cipher = cipher + gk[length_gk]
+        
             
         length_gk = length_gk - 1
         length_plaintext = length_plaintext - 1     
