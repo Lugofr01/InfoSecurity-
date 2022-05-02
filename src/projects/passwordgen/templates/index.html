@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <link
+      href="//cdn.muicss.com/mui-0.10.1/css/mui.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="//cdn.muicss.com/mui-0.10.1/js/mui.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+  <body>
+    <div
+      style="
+        position: absolute;
+        left: 500px;
+        top: 60px;
+        margin: auto;
+        padding: 10px;
+        width: 50%;
+      "
+    >
+      <h1 class="text-center">PASSWORD GENERATOR</h1>
+    </div>
+    <div class="mui-container mui--text-center" id="buttons">
+      <form action="{{ url_for('password') }}" method="POST">
+        <div style="border: 5px solid #0f0f0f">
+          <a
+            href="
+            http://localhost:5000/api/phrase/"
+            >For Pass Phrases Click here</a
+          >
+        </div>
+        <div
+          style="
+            position: absolute;
+            left: 350px;
+            top: 150px;
+            margin: auto;
+            border: 5px solid #0f0f0f;
+            padding: 10px;
+            width: 50%;
+          "
+        >
+          <table id="checkin" style="width: 100%">
+            <tr style="background-color: #ebe7c9">
+              <th>Number of Passwords</th>
+              <th>Length</th>
+              <!-- <th>Word Separator</th> -->
+              <th>Characters</th>
+            </tr>
+
+            <tr>
+              <td>
+                <select name="numberofpasswords" id="1">
+                  <!-- TODO: Populate categories -->
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                </select>
+              </td>
+
+              <td>
+                <select name="lengthofpass" id="seltype">
+                  <!-- TODO: Populate categories -->
+                  <option value="5">5</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                  <option value="30">30</option>
+                </select>
+              </td>
+
+              <td>
+                <select name="type" id="selInst">
+                  <!-- TODO: Populate categories -->
+                  <option value="digits">Digits</option>
+                  <option value="lowerCase">Lowercase letters</option>
+                  <option value="upperr">Uppercase letters</option>
+                  <option value="lowUpCase">Lowercase and Uppercase</option>
+                  <option value="digitsandLetters">Digits and letters</option>
+                  <option value="specialCharacters">Special characters</option>
+                  <option value="All">All</option>
+                </select>
+              </td>
+            </tr>
+            <div style="position: absolute; left: -90px; top: 170px">
+              <button
+                class="btn btn-secondary btn-lg btn-block"
+                style="height: 50px; width: 900px"
+              >
+                GENERATE PASSWORD
+              </button>
+            </div>
+          </table>
+        </div>
+      </form>
+      <div
+        style="
+          position: absolute;
+          left: 350px;
+          top: 400px;
+          margin: auto;
+
+          padding: 10px;
+          width: 50%;
+        "
+      ></div>
+    </div>
+  </body>
+</html>

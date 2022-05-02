@@ -1,0 +1,17 @@
+{% include "phrase.html" %} {% block data %}
+
+<div
+  style="
+    position: absolute;
+    left: 350px;
+    top: 400px;
+    margin: auto;
+    border: 5px solid #0f0f0f;
+    padding: 10px;
+    width: 50%;
+  "
+>
+  {% for i in ph %} {{i}}{{k}} {% endfor %}
+</div>
+
+{% endblock %}
