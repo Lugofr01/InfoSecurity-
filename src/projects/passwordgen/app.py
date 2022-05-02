@@ -192,7 +192,7 @@ def password():
                     etp.append("weak")
                 elif sub > 80 and sub < 100:
                     etp.append("strong")
-                elif sub < 100:
+                elif sub > 100:
                     etp.append("very strong")
 
                 posional = random.sample(sum*10,number)
