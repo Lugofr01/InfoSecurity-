@@ -23,7 +23,7 @@ ul = upperr + lowercase
 letter_and_digits = ul + digits
 symbols = ['~', ':', "'", '+', '[', '\\', '@', '^', '{', '%', '(', '-', '"', '*', '|', ',', '&', '<', '`', '}', '.', '_', '=', ']', '!', '>', ';', '?', '#', '$', ')', '/']
 sum = letter_and_digits + symbols
-numberofPasswords = []
+numb = []
 
 @app.route("/api/data", methods=["GET", "POST"])
 
@@ -64,7 +64,7 @@ def password():
                 
         
                 password = "".join(posional)
-            numberofPasswords.append(password)
+            numb.append(password)
             
             
             
@@ -88,7 +88,7 @@ def password():
                 posional = random.sample(lowercase*10,number)
             
                 password = "".join(posional)
-                numberofPasswords.append(password)
+                numb.append(password)
 
         if passtype == "upperr":
             for i in range(numberofpasswords):
@@ -110,7 +110,7 @@ def password():
                 posional = random.sample(upperr*10,number)
             
                 password = "".join(posional)
-                numberofPasswords.append(password)
+                numb.append(password)
 
         if passtype == "lowUpCase":
             for i in range(numberofpasswords):
@@ -132,7 +132,7 @@ def password():
                 posional = random.sample(ul*10,number)
             
                 password = "".join(posional)
-                numberofPasswords.append(password)
+                numb.append(password)
 
         if passtype == "digitsandLetters":
             for i in range(numberofpasswords):
@@ -154,7 +154,7 @@ def password():
                 posional = random.sample(letter_and_digits*10,number)
             
                 password = "".join(posional)
-                numberofPasswords.append(password)
+                numb.append(password)
         
         if passtype == "specialCharacters":
             for i in range(numberofpasswords):
@@ -176,7 +176,7 @@ def password():
                 posional = random.sample(symbols*10,number)
             
                 password = "".join(posional)
-                numberofPasswords.append(password)
+                numb.append(password)
 
         if passtype == "All":
             for i in range(numberofpasswords):
@@ -198,9 +198,9 @@ def password():
                 posional = random.sample(sum*10,number)
             
                 password = "".join(posional)
-                numberofPasswords.append(password)
+                numb.append(password)
 
-        return render_template("results.html",p=numberofPasswords,k=etp)
+        return render_template("results.html",p=numb,k=etp)
     
     
     
