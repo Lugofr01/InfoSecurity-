@@ -250,7 +250,7 @@ def passphrase():
                 etp.append("weak")
             elif sub > 80 and sub < 100:
                 etp.append("strong")
-            elif sub < 100:
+            elif sub > 100:
                 etp.append("very strong")
                     
             x = random.sample(wordS, numberofwords)
