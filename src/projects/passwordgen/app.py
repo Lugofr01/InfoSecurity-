@@ -245,11 +245,11 @@ def passphrase():
                     
                 etp.append("Avoid")
             elif sub > 40 and sub < 60:
-                 etp.append("very weak")
+                 etp.append("very Weak")
             elif sub > 60 and sub < 80:
                 etp.append("weak")
             elif sub > 80 and sub < 100:
-                etp.append("strong")
+                etp.append("Strong")
             elif sub > 100:
                 etp.append("very strong")
                     
