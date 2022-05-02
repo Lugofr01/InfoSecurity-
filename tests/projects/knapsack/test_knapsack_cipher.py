@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
 Merkle-Hellman Knapsack cipher testing
+
 @authors: Roman Yasinovskyy
 @version: 2022.3
 """
-# 
+
 import importlib
 import pathlib
 import sys
@@ -144,7 +145,7 @@ def test_encrypt_word(plaintext, genk, ciphertext, block_size):
 @pytest.mark.timeout(TIME_LIMIT)
 @pytest.mark.parametrize(
     "ciphertext, sik, n, m, plaintext",
-    get_cases("test_case_basic", "ciphertext", "sik", "n", "m", "plaintext"),
+    get_cases("test_case_word", "ciphertext", "sik", "n", "m", "plaintext"),
 )
 def test_decrypt_word(ciphertext, sik, n, m, plaintext):
     """Testing complex case of decryption"""
