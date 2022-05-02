@@ -54,7 +54,7 @@ def password():
                     etp.append("weak")
                 elif sub > 80 and sub < 100:
                     etp.append("strong")
-                elif sub < 100:
+                elif sub > 100:
                     etp.append("very strong")
                 
                 
@@ -82,7 +82,7 @@ def password():
                     etp.append("weak")
                 elif sub > 80 and sub < 100:
                     etp.append("strong")
-                elif sub < 100:
+                elif sub > 100:
                     etp.append("very strong")
 
                 posional = random.sample(lowercase*10,number)
@@ -104,7 +104,7 @@ def password():
                     etp.append("weak")
                 elif sub > 80 and sub < 100:
                     etp.append("strong")
-                elif sub < 100:
+                elif sub > 100:
                     etp.append("very strong")
 
                 posional = random.sample(upperr*10,number)
@@ -126,7 +126,7 @@ def password():
                     etp.append("weak")
                 elif sub > 80 and sub < 100:
                     etp.append("strong")
-                elif sub < 100:
+                elif sub > 100:
                     etp.append("very strong")
 
                 posional = random.sample(ul*10,number)
@@ -148,7 +148,7 @@ def password():
                     etp.append("weak")
                 elif sub > 80 and sub < 100:
                     etp.append("strong")
-                elif sub < 100:
+                elif sub > 100:
                     etp.append("very strong")
 
                 posional = random.sample(letter_and_digits*10,number)
@@ -170,7 +170,7 @@ def password():
                     etp.append("weak")
                 elif sub > 80 and sub < 100:
                     etp.append("strong")
-                elif sub < 100:
+                elif sub > 100:
                     etp.append("very strong")
 
                 posional = random.sample(symbols*10,number)
