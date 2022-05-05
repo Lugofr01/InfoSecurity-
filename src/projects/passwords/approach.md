@@ -10,3 +10,5 @@ https://mega.nz/folder/HRgEwRJR#lTA3GYxLSnC8I7ecOiFjFA
 
 \*This repository was also useful for my password cracking endavours
 https://github.com/danielmiessler/SecLists/tree/master/Passwords
+
+Furthermore, I tried several random words such as which would fit in context of CS 460, I also used words provided from random data files provided on cs 460 to see if I'd get a few more passwords.
