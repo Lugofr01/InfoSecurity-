@@ -1,27 +1,43 @@
 #!/usr/bin/python3
 """
-Testing the custom VPN implementation
-Roman Yasinovskyy, 2020
+Custom VPN testing
+@authors: Roman Yasinovskyy
+@version: 2022.4
 """
 
+import importlib
+import pathlib
+import sys
 
 import pytest
-from Crypto.Cipher import XOR, DES, AES, Blowfish
+
+try:
+    importlib.util.find_spec(".".join(pathlib.Path(__file__).parts[-3:-1]), "src")
+except ModuleNotFoundError:
+    sys.path.append(f"{pathlib.Path(__file__).parents[3]}/")
+finally:
+    from src.projects.vpn.server import (
+        parse_proposal,
+        select_cipher,
+        generate_cipher_response,
+        parse_dhm_request,
+        get_key_and_iv,
+        generate_dhm_response,
+        read_message,
+        validate_hmac,
+    )
+
+from Crypto.Cipher import DES, AES, Blowfish
 from Crypto.Hash import SHA256, HMAC
-from src.projects.vpn.server import parse_proposal
-from src.projects.vpn.server import select_cipher
-from src.projects.vpn.server import generate_cipher_response
-from src.projects.vpn.server import parse_dhm_request
-from src.projects.vpn.server import get_key_and_iv
-from src.projects.vpn.server import generate_dhm_response
-from src.projects.vpn.server import read_message
-from src.projects.vpn.server import validate_hmac
 
 
 @pytest.mark.parametrize(
     "proposal, ciphers",
     [
-        ("ProposedCiphers:AES:[256]", {"AES": [256]},),
+        (
+            "ProposedCiphers:AES:[256]",
+            {"AES": [256]},
+        ),
         (
             "ProposedCiphers:AES:[128,192,256],Blowfish:[112,224,448],DES:[56]",
             {"AES": [128, 192, 256], "Blowfish": [112, 224, 448], "DES": [56]},
@@ -206,4 +222,4 @@ def test_validate_hmac_err(message, hmac_in, key):
 
 
 if __name__ == "__main__":
-    pytest.main(["-v", "test_server.py"])
+    pytest.main(["-v", __file__])

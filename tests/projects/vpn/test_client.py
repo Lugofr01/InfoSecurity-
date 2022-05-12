@@ -1,20 +1,34 @@
 #!/usr/bin/python3
 """
-Testing the custom VPN implementation
-Roman Yasinovskyy, 2020
+Custom VPN testing
+@authors: Roman Yasinovskyy
+@version: 2022.4
 """
+
+import importlib
+import pathlib
+import sys
+from importlib import util
 
 
 import pytest
+
+try:
+    importlib.util.find_spec(".".join(pathlib.Path(__file__).parts[-3:-1]), "src")
+except ModuleNotFoundError:
+    sys.path.append(f"{pathlib.Path(__file__).parents[3]}/")
+finally:
+    from src.projects.vpn.client import (
+        generate_cipher_proposal,
+        parse_cipher_selection,
+        generate_dhm_request,
+        parse_dhm_response,
+        get_key_and_iv,
+        add_padding,
+        encrypt_message,
+    )
 from Crypto.Cipher import AES, DES, Blowfish
 from Crypto.Hash import SHA256, HMAC
-from src.projects.vpn.client import generate_cipher_proposal
-from src.projects.vpn.client import parse_cipher_selection
-from src.projects.vpn.client import generate_dhm_request
-from src.projects.vpn.client import parse_dhm_response
-from src.projects.vpn.client import get_key_and_iv
-from src.projects.vpn.client import add_padding
-from src.projects.vpn.client import encrypt_message
 
 
 @pytest.mark.parametrize(
@@ -149,4 +163,4 @@ def test_encrypt_message(plaintext, key, iv, ciphertext, hmac):
 
 
 if __name__ == "__main__":
-    pytest.main(["-v", "test_client.py"])
+    pytest.main(["-v", __file__])
